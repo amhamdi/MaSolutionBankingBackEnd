@@ -12,8 +12,12 @@ namespace BankingApp.L1.Business.Implementations
 {
     public class ComptesBusinessImpl : IComptesBusiness
     {
-        private IComptesRepository repository = new ComptesRepositoryImpl_EF();
+        private IComptesRepository repository; // = new ComptesRepositoryImpl_EF();
 
+        public ComptesBusinessImpl(IComptesRepository repository)  // Pour l'injection par constructeur
+        {
+            this.repository = repository;
+        }
         public decimal? ConsulterSolde(string numero)
         {
             var resultat = repository.FindById(numero);
